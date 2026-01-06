@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1a"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "vickey_vpc" {
@@ -14,7 +14,7 @@ resource "aws_subnet" "vickey_subnet" {
   count = 2
   vpc_id                  = aws_vpc.vickey_vpc.id
   cidr_block              = cidrsubnet(aws_vpc.vickey_vpc.cidr_block, 8, count.index)
-  availability_zone       = element(["us-east-1a", "us-east-1a"], count.index)
+  availability_zone       = element(["us-east-1", "us-east-1"], count.index)
   map_public_ip_on_launch = true
 
   tags = {
